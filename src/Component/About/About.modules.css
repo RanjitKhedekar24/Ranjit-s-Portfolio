@@ -1,0 +1,139 @@
+#about {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(17, 20, 23) !important;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.leftabout {
+  width: 50%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .leftabout {
+    width: 50%;
+  }
+}
+
+.circleline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background: linear-gradient(to right, #4ecdc4, #7f5af0);
+  box-shadow: 2px 2px 30px #7f5af0;
+}
+.line {
+  width: 2px;
+  height: 120px;
+  background-color: aliceblue;
+}
+
+.aboutdetails {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+ul {
+  list-style-type: none;
+}
+.aboutdetails h1 {
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4, #7f5af0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.aboutdetails li {
+  color: aliceblue;
+}
+.personalinfo li span {
+  background: linear-gradient(to right, #4ecdc4, #7f5af0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.education li span {
+  background: linear-gradient(to right, #4ecdc4, #7f5af0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.skills li span {
+  color: aliceblue;
+}
+
+.rightabout {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.myinfo {
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-clip: padding-box;
+  position: relative;
+  box-shadow: 0 0 20px #4ecdc4;
+  backdrop-filter: blur(5px);
+  background: rgba(17, 20, 23, 0.7);
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+
+.myinfo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+}
+
+.myinfo:hover {
+  transform: scale(1.02);
+}
+
+.myinfo h1 {
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4, #7f5af0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.myinfo p {
+  color: aliceblue;
+  line-height: 1.6;
+  text-align: justify;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  letter-spacing: 0.5px;
+  padding: 0 2vw;
+}

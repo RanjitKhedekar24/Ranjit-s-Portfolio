@@ -1,0 +1,141 @@
+#project {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(17, 20, 23) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  perspective: 1000px; /* For 3D effects */
+}
+#project h1 {
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4, #7f5af0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 2rem;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+#project h1::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4, #7f5af0);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: lineReveal 1.5s forwards ease-out 0.5s;
+}
+
+@keyframes lineReveal {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.slider {
+  width: 90%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  gap: 20px;
+  padding: 20px;
+  scrollbar-width: none;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card hover effects */
+.card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.card:hover::before {
+  left: 100%;
+  transition: 0.5s;
+}
+
+/* Button animation */
+.view-project-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.view-project-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.view-project-btn:hover::before {
+  width: 100%;
+}
+
+.view-project-btn:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a glow effect to the project section */
+#project::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(127, 90, 240, 0.1) 0%,
+    rgba(127, 90, 240, 0) 70%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
