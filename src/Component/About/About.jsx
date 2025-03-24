@@ -2,11 +2,40 @@ import "./About.modules.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useGSAP(() => {
+    // Skip complex animations on mobile
+    if (isMobile) {
+      gsap.from(".aboutdetails h1, .aboutdetails ul li, .myinfo h1, .myinfo p", {
+        opacity: 0,
+        y: 30,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 80%",
+        }
+      });
+      return;
+    }
+
+    // Full animations for desktop
     gsap.from(".circle", {
       x: -100,
       opacity: 0,
@@ -94,14 +123,16 @@ function About() {
     <>
       <div id="about">
         <div className="leftabout">
-          <div className="circleline">
-            <div className="circle"></div>
-            <div className="line"></div>
-            <div className="circle"></div>
-            <div className="line"></div>
-            <div className="circle"></div>
-            <div className="line"></div>
-          </div>
+          {!isMobile && (
+            <div className="circleline">
+              <div className="circle"></div>
+              <div className="line"></div>
+              <div className="circle"></div>
+              <div className="line"></div>
+              <div className="circle"></div>
+              <div className="line"></div>
+            </div>
+          )}
           <div className="aboutdetails">
             <div className="personalinfo">
               <h1>Personal Info</h1>

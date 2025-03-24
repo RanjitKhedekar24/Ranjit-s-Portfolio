@@ -13,8 +13,17 @@ function NavBar() {
   const [activeLink, setActiveLink] = useState("home");
   const [expanded, setExpanded] = useState(false);
 
+  // Optimize scroll event with throttling
   useEffect(() => {
     const handleScroll = () => {
+      if (!window.requestAnimationFrame) {
+        setTimeout(findActiveSection, 300);
+      } else {
+        window.requestAnimationFrame(findActiveSection);
+      }
+    };
+
+    const findActiveSection = () => {
       const sections = ["home", "about", "projects", "contact"];
       const scrollPosition = window.scrollY;
 
@@ -35,7 +44,7 @@ function NavBar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -44,27 +53,45 @@ function NavBar() {
     setExpanded(false); // Close the menu when a link is clicked
   };
 
+  // Optimize GSAP animations for mobile
   useGSAP(
     () => {
+      // Check if we're on mobile
+      const isMobile = window.innerWidth < 768;
+      
       let tl = gsap.timeline();
-      // Use more specific selectors to avoid null target errors
-      tl.from(".navbar h1", {
-        y: -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.inOut",
-        delay: 0.2, // Add a small delay to ensure DOM is ready
-      });
-      tl.from("#basic-navbar-nav .nav-link", {
-        y: -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.inOut",
-        stagger: 0.2,
-      });
+      // Simpler animations for mobile
+      if (isMobile) {
+        tl.from(".navbar h1", {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power1.out",
+        });
+        tl.from("#basic-navbar-nav .nav-link", {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power1.out",
+          stagger: 0.1,
+        });
+      } else {
+        // Full animations for desktop
+        tl.from(".navbar h1", {
+          y: -100,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.inOut",
+        });
+        tl.from("#basic-navbar-nav .nav-link", {
+          y: -100,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.inOut",
+          stagger: 0.2,
+        });
+      }
     },
     { scope: document.body }
-  ); // Add a scope to ensure elements are found
+  );
 
   const [menuOpen, setMenuOpen] = useState(false);
 
