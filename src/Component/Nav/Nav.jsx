@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Nav.modules.css";
 import { Link } from "react-scroll";
-import { Navbar, Nav as BootstrapNav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -9,7 +9,41 @@ import gsap from "gsap";
 // Register the GSAP plugin
 gsap.registerPlugin(useGSAP);
 
-function Nav() {
+function NavBar() {
+  const [activeLink, setActiveLink] = useState("home");
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects", "contact"];
+      const scrollPosition = window.scrollY;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+
+          if (
+            scrollPosition >= offsetTop - 100 &&
+            scrollPosition < offsetTop + offsetHeight - 100
+          ) {
+            setActiveLink(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavLinkClick = (link) => {
+    setActiveLink(link);
+    setExpanded(false); // Close the menu when a link is clicked
+  };
+
   useGSAP(
     () => {
       let tl = gsap.timeline();
@@ -55,86 +89,66 @@ function Nav() {
   };
 
   return (
-    <>
-      <Navbar expand="md" fixed="top" bg="dark" variant="dark">
-        <Container>
-          <Link
-            to="home"
-            duration={500}
-            smooth={true}
-            className="one d-flex align-items-center"
-          >
-            <h1>PORTFOLIO</h1>
-          </Link>
-
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            onClick={toggleMenu}
-          />
-
-          <Navbar.Collapse id="basic-navbar-nav">
-            <BootstrapNav className="ms-auto">
-              <BootstrapNav.Item>
-                <Link
-                  to="home"
-                  duration={500}
-                  activeClass="active"
-                  spy={true}
-                  smooth={true}
-                  onClick={closeMenu}
-                  className="nav-link"
-                >
-                  Home
-                </Link>
-              </BootstrapNav.Item>
-
-              <BootstrapNav.Item>
-                <Link
-                  to="about"
-                  duration={500}
-                  activeClass="active"
-                  spy={true}
-                  smooth={true}
-                  onClick={closeMenu}
-                  className="nav-link"
-                >
-                  About
-                </Link>
-              </BootstrapNav.Item>
-
-              <BootstrapNav.Item>
-                <Link
-                  to="project"
-                  duration={500}
-                  activeClass="active"
-                  spy={true}
-                  smooth={true}
-                  onClick={closeMenu}
-                  className="nav-link"
-                >
-                  Projects
-                </Link>
-              </BootstrapNav.Item>
-
-              <BootstrapNav.Item>
-                <Link
-                  to="contact"
-                  duration={500}
-                  activeClass="active"
-                  spy={true}
-                  smooth={true}
-                  onClick={closeMenu}
-                  className="nav-link"
-                >
-                  Contact
-                </Link>
-              </BootstrapNav.Item>
-            </BootstrapNav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
+    <Navbar expand="md" fixed="top" expanded={expanded} className="navbar">
+      <Container>
+        <Navbar.Brand href="#home" className="one">
+          <h1>Portfolio</h1>
+        </Navbar.Brand>
+        <Navbar.Toggle 
+          aria-controls="basic-navbar-nav" 
+          onClick={() => setExpanded(expanded ? false : "expanded")}
+        />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Link
+              to="home"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className={`nav-link ${activeLink === "home" ? "active" : ""}`}
+              onClick={() => handleNavLinkClick("home")}
+            >
+              Home
+            </Link>
+            <Link
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className={`nav-link ${activeLink === "about" ? "active" : ""}`}
+              onClick={() => handleNavLinkClick("about")}
+            >
+              About
+            </Link>
+            <Link
+              to="projects"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className={`nav-link ${activeLink === "projects" ? "active" : ""}`}
+              onClick={() => handleNavLinkClick("projects")}
+            >
+              Projects
+            </Link>
+            <Link
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className={`nav-link ${activeLink === "contact" ? "active" : ""}`}
+              onClick={() => handleNavLinkClick("contact")}
+            >
+              Contact
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
-export default Nav;
+export default NavBar;
