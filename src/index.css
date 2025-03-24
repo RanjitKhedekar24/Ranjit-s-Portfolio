@@ -2,10 +2,18 @@
 
 body {
   background-color: rgb(17, 20, 23);
+  overflow-x: hidden;
+  width: 100%;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+/* Fix for horizontal scrollbar */
+html {
+  overflow-x: hidden;
+  width: 100%;
 }

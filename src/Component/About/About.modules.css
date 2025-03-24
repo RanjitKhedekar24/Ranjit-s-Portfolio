@@ -1,3 +1,4 @@
+
 #about {
   min-height: 100vh;
   width: 100%;
@@ -9,6 +10,7 @@
   justify-content: space-between;
   padding: 2rem;
 }
+
 .leftabout {
   width: 50%;
   min-height: 100vh;
@@ -18,18 +20,13 @@
   gap: 40px;
 }
 
-@media screen and (min-width: 768px) {
-  .leftabout {
-    width: 50%;
-  }
-}
-
 .circleline {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
+
 .circle {
   width: 60px;
   height: 60px;
@@ -37,6 +34,7 @@
   background: linear-gradient(to right, #4ecdc4, #7f5af0);
   box-shadow: 2px 2px 30px #7f5af0;
 }
+
 .line {
   width: 2px;
   height: 120px;
@@ -48,32 +46,29 @@
   gap: 20px;
   flex-direction: column;
 }
+
 ul {
   list-style-type: none;
 }
+
 .aboutdetails h1 {
   background: linear-gradient(to right, #ff6b6b, #4ecdc4, #7f5af0);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .aboutdetails li {
   color: aliceblue;
 }
-.personalinfo li span {
-  background: linear-gradient(to right, #4ecdc4, #7f5af0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.education li span {
-  background: linear-gradient(to right, #4ecdc4, #7f5af0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
+.personalinfo li span,
+.education li span,
 .skills li span {
-  color: aliceblue;
+  background: linear-gradient(to right, #4ecdc4, #7f5af0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .rightabout {
@@ -136,4 +131,31 @@ ul {
   font-size: clamp(1rem, 1.5vw, 1.3rem);
   letter-spacing: 0.5px;
   padding: 0 2vw;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  #about {
+    padding: 1.5rem; /* Reduce padding on medium screens */
+  }
+
+  .leftabout,
+  .rightabout {
+    width: 100%; /* Stack columns on medium screens */
+    min-height: auto; /* Allow height to adjust */
+  }
+
+  .aboutdetails {
+    gap: 10px; /* Reduce gap between details */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #about {
+    padding: 1rem; /* Further reduce padding */
+  }
+
+  .leftabout {
+    gap: 20px; /* Adjust gap for smaller screens */
+  }
 }
