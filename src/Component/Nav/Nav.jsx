@@ -58,7 +58,7 @@ function NavBar() {
     () => {
       // Check if we're on mobile
       const isMobile = window.innerWidth < 768;
-      
+
       let tl = gsap.timeline();
       // Simpler animations for mobile
       if (isMobile) {
@@ -121,8 +121,8 @@ function NavBar() {
         <Navbar.Brand href="#home" className="one">
           <h1>Portfolio</h1>
         </Navbar.Brand>
-        <Navbar.Toggle 
-          aria-controls="basic-navbar-nav" 
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
           onClick={() => setExpanded(expanded ? false : "expanded")}
         />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -150,13 +150,15 @@ function NavBar() {
               About
             </Link>
             <Link
-              to="projects"
+              to="project"
               spy={true}
               smooth={true}
               offset={-70}
               duration={500}
-              className={`nav-link ${activeLink === "projects" ? "active" : ""}`}
-              onClick={() => handleNavLinkClick("projects")}
+              className={`nav-link ${
+                activeLink === "project" ? "active" : ""
+              }`}
+              onClick={() => handleNavLinkClick("project")}
             >
               Projects
             </Link>
