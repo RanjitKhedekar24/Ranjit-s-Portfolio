@@ -1,9 +1,10 @@
 /* Custom styling to work with Bootstrap */
 .navbar {
   background-color: rgb(17, 20, 23) !important;
-  height: 80px;
+  height: auto;
+  min-height: 80px;
   z-index: 1000;
-  overflow: hidden;
+  overflow: visible;
   position: fixed;
   width: 100%;
   top: 0;
@@ -47,6 +48,12 @@
 /* Ensure Bootstrap's navbar-toggler has your custom styling */
 .navbar-toggler {
   border-color: rgba(255, 255, 255, 0.5) !important;
+  margin-right: 0;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
 }
 
 .navbar-toggler-icon {
@@ -56,14 +63,13 @@
 /* Mobile menu styling */
 @media screen and (max-width: 768px) {
   .navbar {
-    height: auto;
     padding: 0.5rem 1rem;
   }
-
+  
   .navbar-brand h1 {
     font-size: 1.5rem;
   }
-
+  
   .navbar-collapse {
     background-color: rgb(17, 20, 23);
     padding: 1rem;
@@ -72,6 +78,11 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     max-height: calc(100vh - 100px);
     overflow-y: auto;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
   }
 
   .nav-link {
@@ -79,11 +90,11 @@
     padding: 0.75rem 0 !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-
+  
   .nav-link:last-child {
     border-bottom: none;
   }
-
+  
   .nav-link.active {
     border-bottom: 1px solid #4ecdc4;
   }
@@ -94,18 +105,17 @@
   .navbar {
     padding: 0.5rem 1rem;
   }
-
+  
   .navbar-brand h1 {
     font-size: 1.75rem;
   }
-
+  
   .nav-link {
     font-size: 1rem;
     padding: 0.5rem 0.75rem !important;
   }
 }
 
-/* Add viewport meta tag to index.html */
 @media screen and (max-width: 767px) {
   html,
   body {
@@ -115,7 +125,7 @@
     padding: 0;
     overflow-x: hidden;
   }
-
+  
   body {
     padding-top: 60px; /* Account for fixed navbar */
   }
