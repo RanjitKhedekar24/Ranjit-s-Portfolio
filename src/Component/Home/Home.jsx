@@ -107,7 +107,10 @@ function Home() {
               <a href="#contact" className="contact-btn">
                 <FaEnvelope className="btn-icon" /> Contact Me
               </a>
-              <a href="#" className="resume-btn">
+              <a
+                href="https://drive.google.com/file/d/11ox8WDNXGnl_4frLcyQEkSN7ICGoXxXL/view?usp=drive_link"
+                className="resume-btn"
+              >
                 <FaDownload className="btn-icon" /> Download CV
               </a>
             </div>

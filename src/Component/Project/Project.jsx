@@ -90,9 +90,9 @@ function Project() {
             projectUrl="https://hotel-web-git-main-ranjit-khedekars-projects.vercel.app/"
           />
           <Card
-            title="Project 4"
+            title="SARA – Smart AI React Assistant"
             image={br}
-            projectUrl="https://yourprojectlink.com/project4"
+            projectUrl="https://ai-assistant-liard-two.vercel.app/"
           />
           <Card
             title="Calculator"
@@ -100,9 +100,9 @@ function Project() {
             projectUrl="https://react-calculator-sigma-ivory.vercel.app/"
           />
           <Card
-            title="Project 5"
+            title="Restaurant menu"
             image={cb}
-            projectUrl="https://yourprojectlink.com/project5"
+            projectUrl="https://ojanup-s-menu-v3-git-main-ranjit-khedekars-projects.vercel.app/"
           />
         </div>
       </div>
