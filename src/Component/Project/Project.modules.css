@@ -139,3 +139,36 @@
   pointer-events: none;
   z-index: -1;
 }
+
+@media screen and (max-width: 768px) {
+  #project {
+    height: auto;
+    min-height: 100vh;
+    padding: 40px 0;
+  }
+
+  .slider {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    gap: 30px;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  .card {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #project h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    width: 95%;
+  }
+}

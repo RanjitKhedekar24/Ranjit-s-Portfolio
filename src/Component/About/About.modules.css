@@ -152,10 +152,46 @@ ul {
 
 @media screen and (max-width: 768px) {
   #about {
-    padding: 1rem; /* Further reduce padding */
+    padding: 1rem;
+    flex-direction: column;
   }
 
-  .leftabout {
-    gap: 20px; /* Adjust gap for smaller screens */
+  .leftabout,
+  .rightabout {
+    width: 100%;
+    min-height: auto;
+    padding: 1rem;
+  }
+
+  .circleline {
+    display: none;
+  }
+
+  .aboutdetails {
+    width: 100%;
+    gap: 15px;
+  }
+
+  .myinfo {
+    margin-top: 2rem;
+  }
+
+  .myinfo h1 {
+    font-size: 1.8rem;
+  }
+
+  .myinfo p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .aboutdetails h1 {
+    font-size: 1.5rem;
+  }
+
+  .aboutdetails li {
+    font-size: 0.9rem;
   }
 }
